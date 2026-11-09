@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Calc AB Ch 4: 4.1 + 4.2 Plan</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+<style>
+  :root{
+    --bg:#f6f7fb; --card:#fff; --ink:#1d2433; --muted:#5d6678; --line:#e3e6ee;
+    --blue:#2f6fed; --blue-soft:#e8efff; --green:#18a058; --green-soft:#e6f6ed;
+    --amber:#b7791f; --amber-soft:#fdf3e1; --red:#d64545; --purple:#7048e8; --purple-soft:#f0ebff;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;background:var(--bg);color:var(--ink);line-height:1.5}
+  a{color:var(--blue)}
+  header{background:linear-gradient(135deg,#1f3b8f,#2f6fed);color:#fff;padding:22px 18px 18px}
+  .wrap{max-width:980px;margin:0 auto;padding:0 16px}
+  header h1{margin:0 0 4px;font-size:1.6rem}
+  header p{margin:0;opacity:.92}
+  .due{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}
+  .pill{background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.3);border-radius:999px;padding:6px 12px;font-size:.92rem}
+  .pill b{font-variant-numeric:tabular-nums}
+  .progress{margin-top:14px;background:rgba(255,255,255,.22);border-radius:999px;height:12px;overflow:hidden}
+  .progress>div{height:100%;background:#7ee2a8;width:0;transition:width .3s}
+  .progtext{font-size:.88rem;margin-top:6px;opacity:.95}
+  nav{position:sticky;top:0;z-index:5;background:#fff;border-bottom:1px solid var(--line)}
+  nav .wrap{display:flex;gap:6px;overflow-x:auto;padding:8px 16px}
+  nav a{white-space:nowrap;text-decoration:none;color:var(--ink);padding:7px 12px;border-radius:8px;font-weight:600;font-size:.93rem}
+  nav a:hover{background:var(--blue-soft)}
+  section{padding:22px 0 6px;scroll-margin-top:56px}
+  html{scroll-behavior:smooth}
+  h2{font-size:1.35rem;margin:0 0 4px}
+  h3{font-size:1.08rem;margin:20px 0 8px}
+  .sub{color:var(--muted);margin:0 0 14px}
+  .step{display:inline-block;background:var(--blue);color:#fff;border-radius:6px;padding:1px 8px;font-size:.8rem;font-weight:700;margin-right:6px;vertical-align:2px}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:14px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:12px;overflow:hidden;display:flex;flex-direction:column}
+  .card.done{border-color:#9fd9b8;box-shadow:0 0 0 2px var(--green-soft)}
+  .vid{position:relative;aspect-ratio:16/9;background:#000;cursor:pointer}
+  .vid img{width:100%;height:100%;object-fit:cover;display:block;opacity:.88}
+  .vid iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+  .play{position:absolute;inset:0;display:flex;align-items:center;justify-content:center}
+  .play span{width:62px;height:44px;background:#e62117;border-radius:12px;display:flex;align-items:center;justify-content:center;box-shadow:0 3px 10px rgba(0,0,0,.35)}
+  .play span:after{content:"";border-left:17px solid #fff;border-top:10px solid transparent;border-bottom:10px solid transparent;margin-left:4px}
+  .len{position:absolute;right:8px;bottom:8px;background:rgba(0,0,0,.78);color:#fff;font-size:.78rem;padding:1px 6px;border-radius:4px}
+  .num{position:absolute;left:8px;top:8px;background:var(--blue);color:#fff;font-weight:700;font-size:.8rem;padding:2px 8px;border-radius:6px}
+  .cbody{padding:12px 14px 14px;display:flex;flex-direction:column;gap:6px;flex:1}
+  .ctitle{font-weight:700}
+  .cwhy{color:var(--muted);font-size:.93rem}
+  .tag{display:inline-block;font-size:.76rem;background:var(--purple-soft);color:var(--purple);border-radius:6px;padding:1px 7px;font-weight:600}
+  .crow{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:auto;padding-top:6px}
+  .chk{display:flex;align-items:center;gap:8px;font-weight:600;cursor:pointer;user-select:none}
+  .chk input{width:19px;height:19px;accent-color:var(--green);cursor:pointer}
+  .small{font-size:.85rem}
+  .rules{background:var(--card);border:1px solid var(--line);border-left:5px solid var(--purple);border-radius:12px;padding:14px 18px;margin-top:16px}
+  .rules h3{margin-top:0}
+  .rules ul{margin:6px 0 0;padding-left:20px}
+  .rules li{margin:7px 0}
+  .tbl{width:100%;border-collapse:collapse;margin:8px 0}
+  .tbl td,.tbl th{border:1px solid var(--line);padding:6px 10px;text-align:left}
+  .tbl th{background:#f3f4f8}
+  .tasks{display:flex;flex-direction:column;gap:10px}
+  .task{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 14px;display:flex;gap:12px;align-items:flex-start}
+  .task.done{background:#f5fcf8;border-color:#9fd9b8}
+  .task input{width:20px;height:20px;margin-top:3px;accent-color:var(--green);flex:none;cursor:pointer}
+  .task .t{font-weight:700}
+  .task .d{color:var(--muted);font-size:.93rem;margin-top:2px}
+  .links{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+  .btn{display:inline-flex;align-items:center;gap:6px;text-decoration:none;font-weight:600;font-size:.88rem;border:1px solid var(--line);background:#fff;color:var(--ink);border-radius:8px;padding:5px 10px;cursor:pointer}
+  .btn:hover{border-color:var(--blue);color:var(--blue)}
+  .btn.primary{background:var(--blue);border-color:var(--blue);color:#fff}
+  .btn.primary:hover{background:#2459c9;color:#fff}
+  .btn.help{background:var(--amber-soft);border-color:#f0d9a8;color:#7a5410}
+  .opt{font-size:.75rem;background:#eef0f4;color:var(--muted);border-radius:6px;padding:1px 7px;font-weight:600;margin-left:6px;vertical-align:1px}
+  .note{background:var(--amber-soft);border:1px solid #f0d9a8;border-radius:10px;padding:10px 14px;margin:12px 0;font-size:.95rem}
+  .good{background:var(--green-soft);border:1px solid #b5e4c8;border-radius:10px;padding:10px 14px;margin:12px 0;font-size:.95rem}
+  .modal{position:fixed;inset:0;background:rgba(10,15,30,.7);display:none;align-items:center;justify-content:center;z-index:50;padding:16px}
+  .modal.open{display:flex}
+  .mbox{background:#fff;border-radius:12px;width:min(860px,100%);overflow:hidden}
+  .mhead{display:flex;justify-content:space-between;align-items:center;padding:10px 14px;gap:10px}
+  .mhead b{font-size:.98rem}
+  .mvid{aspect-ratio:16/9;background:#000}
+  .mvid iframe{width:100%;height:100%;border:0}
+  footer{color:var(--muted);font-size:.85rem;padding:30px 0 40px}
+  .resetbtn{background:none;border:none;color:var(--muted);text-decoration:underline;cursor:pointer;font-size:.85rem;padding:0}
+  @media (max-width:560px){header h1{font-size:1.3rem}.task{padding:10px 12px}}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <h1>Calc AB Ch 4: 4.1 + 4.2 Plan</h1>
+    <p>Learn the concepts first, then practice. Everything matches Mr. Rubio's notes and Work 4.2.</p>
+    <div class="due">
+      <div class="pill">Work 4.2 due: <b>Mon Nov 9, 11:59 PM</b> <span id="countdown"></span></div>
+      <div class="pill">Next: Work 4.3 Day 1, due Wed Nov 11</div>
+    </div>
+    <div class="progress"><div id="bar"></div></div>
+    <div class="progtext" id="progtext">0 of 0 done</div>
+  </div>
+</header>
+
+<nav><div class="wrap">
+  <a href="#learn">1. Learn</a>
+  <a href="#practice41">2. Practice 4.1</a>
+  <a href="#work42">3. Work 4.2</a>
+  <a href="#resources">Rubio's files</a>
+</div></nav>
+
+<main class="wrap">
+
+<!-- ===================== PART 1: LEARN ===================== -->
+<section id="learn">
+  <h2><span class="step">PART 1</span>Learn the concepts</h2>
+  <p class="sub">Just watch and understand. No problems yet. Tip: 1.5x speed is fine for all of these. Click a video to play it here.</p>
+
+  <h3>4.1 Antiderivatives (about 30 min)</h3>
+  <div class="grid" id="v41"></div>
+
+  <div class="rules">
+    <h3>4.1 rules to copy down (from Rubio's Notes 4.1)</h3>
+    <ul>
+      <li><b>Antiderivative:</b> \(F\) is an antiderivative of \(f\) if \(F'(x)=f(x)\). Write it as \(\displaystyle\int f(x)\,dx = F(x)+C\). Never leave off the \(+C\) or the \(dx\).</li>
+      <li><b>Check any answer</b> by taking its derivative. You should get back the thing you integrated.</li>
+      <li><b>Power rule:</b> \(\displaystyle\int x^n\,dx=\frac{x^{n+1}}{n+1}+C\) for \(n\neq -1\). Also \(\displaystyle\int k\,dx = kx+C\).</li>
+      <li><b>Constants and sums:</b> \(\displaystyle\int a f(x)\,dx = a\!\int f(x)\,dx\) and \(\displaystyle\int (f+g)\,dx=\int f\,dx+\int g\,dx\).</li>
+      <li><b>Rewrite first</b> (there's no product or quotient rule for integrals):
+        \(\sqrt{x}=x^{1/2}\), \(\ \dfrac{1}{x^3}=x^{-3}\), \(\ \sqrt[3]{x^2}=x^{2/3}\). Multiply out products like \((x+1)^2\). Split fractions: \(\dfrac{x+4}{\sqrt{x}}=x^{1/2}+4x^{-1/2}\).</li>
+      <li><b>Trig</b> (derivatives done backwards):
+        <table class="tbl">
+          <tr><td>\(\int \cos x\,dx=\sin x+C\)</td><td>\(\int \sin x\,dx=-\cos x+C\)</td></tr>
+          <tr><td>\(\int \sec^2 x\,dx=\tan x+C\)</td><td>\(\int \csc^2 x\,dx=-\cot x+C\)</td></tr>
+          <tr><td>\(\int \sec x\tan x\,dx=\sec x+C\)</td><td>\(\int \csc x\cot x\,dx=-\csc x+C\)</td></tr>
+        </table>
+        Also from the notes: \(\int \frac{1}{x}\,dx=\ln|x|+C\) and \(\int e^x\,dx=e^x+C\).
+      </li>
+      <li><b>Trig identities</b> for the worksheet: \(\sin^2x+\cos^2x=1\), so \(1-\cos^2x=\sin^2x\). Example: \(\dfrac{\cos x}{\sin^2 x}=\dfrac{1}{\sin x}\cdot\dfrac{\cos x}{\sin x}=\csc x\cot x\).</li>
+      <li><b>Particular solution:</b> (1) integrate, (2) plug in the given point, (3) solve for \(C\). If you're given \(f''\), do it twice: first find \(f'\) with its point, then \(f\) with its point.</li>
+    </ul>
+  </div>
+
+  <h3>4.2 Area (about 33 min)</h3>
+  <div class="grid" id="v42"></div>
+
+  <div class="rules">
+    <h3>4.2 rules to copy down (from Rubio's Notes 4.2 and the textbook)</h3>
+    <ul>
+      <li><b>Sigma:</b> \(\displaystyle\sum_{i=1}^{5} 2i = 2+4+6+8+10\). \(\Sigma\) means "add them all up."</li>
+      <li><b>Summation formulas:</b>
+        \(\displaystyle\sum_{i=1}^{n} c = cn\), \(\quad\displaystyle\sum_{i=1}^{n} i=\frac{n(n+1)}{2}\), \(\quad\displaystyle\sum_{i=1}^{n} i^2=\frac{n(n+1)(2n+1)}{6}\), \(\quad\displaystyle\sum_{i=1}^{n} i^3=\frac{n^2(n+1)^2}{4}\)</li>
+      <li><b>Properties:</b> \(\sum k\,a_i = k\sum a_i\) and \(\sum (a_i+b_i)=\sum a_i+\sum b_i\).</li>
+      <li><b>Rectangles:</b> width \(\Delta x=\dfrac{b-a}{n}\). Right endpoints \(c_i=a+i\,\Delta x\). Left endpoints \(c_i=a+(i-1)\,\Delta x\). Area \(\approx \sum f(c_i)\,\Delta x\).</li>
+      <li><b>Lower sum</b> = inscribed rectangles (use the <i>lowest</i> height in each slice). <b>Upper sum</b> = circumscribed rectangles (use the <i>highest</i> height).
+        <table class="tbl">
+          <tr><th>Function is...</th><th>Lower sum uses</th><th>Upper sum uses</th></tr>
+          <tr><td>Increasing</td><td>left endpoints</td><td>right endpoints</td></tr>
+          <tr><td>Decreasing</td><td>right endpoints</td><td>left endpoints</td></tr>
+        </table>
+        True area is always between them: lower sum \(\le\) area \(\le\) upper sum.</li>
+      <li><b>Exact area / definite integral:</b> \(\displaystyle\int_a^b f(x)\,dx=\lim_{n\to\infty}\sum_{i=1}^{n} f\!\left(a+\frac{b-a}{n}\,i\right)\cdot\frac{b-a}{n}\)</li>
+      <li><b>Going backwards</b> (limit to integral): the number in \(\Delta x\) is \(b-a\). The number added in front inside \(f(\ )\) is \(a\). Then \(b=a+(b-a)\), and whatever is done to \(c_i\) is \(f(x)\).</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ===================== PART 2: PRACTICE 4.1 ===================== -->
+<section id="practice41">
+  <h2><span class="step">PART 2</span>Practice 4.1</h2>
+  <p class="sub">Khan Academy tells you right away if you're right and has hints. Do them in order. Each one is about 4 to 7 questions.</p>
+  <div class="tasks" id="p41"></div>
+</section>
+
+<!-- ===================== PART 3: WORK 4.2 ===================== -->
+<section id="work42">
+  <h2><span class="step">PART 3</span>Work 4.2 (due tonight, on paper)</h2>
+  <p class="sub">This is your practice for 4.2. If you get stuck, press the orange "Stuck?" button to get a video for just that type of problem.</p>
+  <div class="tasks" id="w42"></div>
+  <div class="note"><b>Calculator:</b> #33 uses \(\cos x\), so put your calculator in <b>radian</b> mode.</div>
+</section>
+
+<!-- ===================== RESOURCES ===================== -->
+<section id="resources">
+  <h2>Rubio's files</h2>
+  <p class="sub">The originals from the Ch 4 roadmap on Canvas.</p>
+  <div class="links">
+    <a class="btn" target="_blank" rel="noopener" href="https://drive.google.com/file/d/1Ji2m71bDgqw9dfOVcPJrvowMJ5XdPc8r/view">Notes 4.1</a>
+    <a class="btn" target="_blank" rel="noopener" href="https://drive.google.com/file/d/1_231NqUqolcJgH4kz2ANAYLkM9PlW812/view">Notes 4.2</a>
+    <a class="btn" target="_blank" rel="noopener" href="https://drive.google.com/file/d/1yjPRUoC5_Iu61G5tY56l1repAtTCHWsG/view">Summary of differentiation + integration rules</a>
+    <a class="btn" target="_blank" rel="noopener" href="https://drive.google.com/file/d/1u6tMY4FIO1BPfvec_wISB8pmHBB78KjE/view">Indefinite integration worksheet 1</a>
+    <a class="btn" target="_blank" rel="noopener" href="https://drive.google.com/file/d/1jH4FKYvpnDuq8solL_YG42M0j26rgr4o/view">Worksheet 1 KEY</a>
+    <a class="btn" target="_blank" rel="noopener" href="https://drive.google.com/file/d/1FRnsHvUhYV3z0YYsucTcca1GPr__P3cR/view">Writing Integrals as Limits of Riemann Sums</a>
+    <a class="btn" target="_blank" rel="noopener" href="https://esuhsd.instructure.com/courses/116970/pages/ab-ch-04-part-1-roadmap">Ch 4 roadmap (Canvas)</a>
+  </div>
+</section>
+
+<footer>
+  Your checkmarks save in this browser. <button class="resetbtn" id="reset">Reset all checkmarks</button>
+</footer>
+</main>
+
+<div class="modal" id="modal" role="dialog" aria-modal="true">
+  <div class="mbox">
+    <div class="mhead"><b id="mtitle"></b><button class="btn" id="mclose">Close</button></div>
+    <div class="mvid" id="mvid"></div>
+  </div>
+</div>
+
+<script>
+const VIDEOS_41 = [
+  {id:'MMv-027KEqU', title:'Antiderivatives and indefinite integrals', ch:'Khan Academy', len:'3:43',
+   why:'What an antiderivative is and why every answer gets +C.', notes:'Notes 4.1 p.1'},
+  {id:'QxbJsg-Vdms', title:'Reverse power rule', ch:'Khan Academy', len:'5:48',
+   why:'Where the power rule for integrals comes from.', notes:'Notes 4.1 p.2'},
+  {id:'7bJXbDqi9FE', title:'Integrals with trig functions', ch:'Professor Dave Explains', len:'7:32',
+   why:'All 6 trig integrals are just derivatives done backwards. Also shows rewriting cos x / sin\u00b2x.', notes:'Notes 4.1 p.3'},
+  {id:'H5tD_NtPDuU', title:'Particular solutions with initial conditions', ch:'The Organic Chemistry Tutor', len:'12:51',
+   why:'Using a given point to find C. The f\u2033 (integrate twice) part starts at 4:18.', notes:'Notes 4.1 p.4'},
+];
+const VIDEOS_42 = [
+  {id:'__Uw1SXPW7s', title:'Introduction to integral calculus', ch:'Khan Academy', len:'4:51',
+   why:'The big question of this chapter: area under a curve.', notes:'Notes 4.2 p.2'},
+  {id:'dEAk0BHBYCM', title:'Riemann approximation introduction', ch:'Khan Academy', len:'6:44',
+   why:'Estimating area by adding up rectangles.', notes:'Notes 4.2 p.2'},
+  {id:'ER5eoDkjsrc', title:'Over- and under-estimation of Riemann sums', ch:'Khan Academy', len:'4:01',
+   why:'Why rectangles overshoot or undershoot. This is upper vs lower sums.', notes:'Notes 4.2 p.2'},
+  {id:'5jwXThH6fg4', title:'Sigma notation for sums', ch:'Khan Academy', len:'4:26',
+   why:'How to read and write \u03a3.', notes:'Notes 4.2 p.1'},
+  {id:'ViqrHGae7FA', title:'Riemann sums in summation notation', ch:'Khan Academy', len:'8:30',
+   why:'Writing all the rectangles as one \u03a3 with \u0394x and c\u1d62.', notes:'Notes 4.2 p.2\u20133'},
+  {id:'CXCtqBlEZ7g', title:'Definite integral as the limit of a Riemann sum', ch:'Khan Academy', len:'4:26',
+   why:'Let n \u2192 \u221e and the rectangles give the exact area. That limit is the definite integral.', notes:'Notes 4.2 p.4\u20135'},
+];
+const KHAN = 'https://www.khanacademy.org/math/ap-calculus-ab/ab-integration-new/';
+const PRACTICE_41 = [
+  {key:'k1', t:'Reverse power rule', d:'Basic power rule.', links:[['Practice on Khan', KHAN+'ab-6-8a/e/intro-to-integration','primary']]},
+  {key:'k2', t:'Reverse power rule: negative and fractional powers', d:'Things like x\u207b\u00b3 and x^(1/2).', links:[['Practice on Khan', KHAN+'ab-6-8a/e/basic-integration','primary']]},
+  {key:'k3', t:'Reverse power rule: sums and multiples', d:'Integrate term by term, pull out constants.', links:[['Practice on Khan', KHAN+'ab-6-8a/e/integration','primary']]},
+  {key:'k4', t:'Reverse power rule: rewriting before integrating', d:'Roots, fractions, and products. This is the most like Rubio\'s worksheet.', links:[['Practice on Khan', KHAN+'ab-6-8a/e/reverse-power-rule-rewriting','primary'],['Stuck?','yt:hzSef_HVqz4:0:Rewriting before integrating (Khan, 5 min)','help']]},
+  {key:'k5', t:'Indefinite integrals: sine and cosine', d:'Trig integrals.', links:[['Practice on Khan', KHAN+'ab-6-8b/e/integrating-sin-cos','primary']]},
+  {key:'k6', t:'Particular solutions (find C)', d:'Khan doesn\'t have these, so use Paul\'s Online Notes. Each problem has a full solution you can open.', links:[['Practice on Paul\'s Notes','https://tutorial.math.lamar.edu/Problems/CalcI/ConstantofIntegration.aspx','primary'],['Stuck?','yt:H5tD_NtPDuU:258:Particular solutions, f\u2033 part (starts at 4:18)','help']]},
+  {key:'k7', t:'Rubio\'s extra practice sheet', opt:true, d:'16 problems from the Ch 4 review section, including sec/csc trig. Do this if you want more practice in your teacher\'s style.', links:[['Questions','https://drive.google.com/file/d/1QUY8mEeouEwknMYCrJwTeM5t1fX9BGOM/view'],['KEY','https://drive.google.com/file/d/1KMpTVc9k_Cf0iNI8geR34JczdrnqQvPL/view']]},
+];
+const WORK_42 = [
+  {key:'w1', t:'Indefinite integration worksheet 1 (#1\u201329)', d:'#1\u201318 power rule and rewriting. #19\u201324 trig (#23\u201324 need sin\u00b2x + cos\u00b2x = 1). #25\u201328 particular solutions from f\u2033. #29 is a word problem: same idea, rate given, find C from the 2012 count. Check every answer with the KEY.',
+   links:[['Worksheet','https://drive.google.com/file/d/1u6tMY4FIO1BPfvec_wISB8pmHBB78KjE/view','primary'],['KEY','https://drive.google.com/file/d/1jH4FKYvpnDuq8solL_YG42M0j26rgr4o/view'],['Stuck on rewriting?','yt:hzSef_HVqz4:0:Rewriting before integrating (Khan, 5 min)','help'],['Stuck on #25\u201329?','yt:H5tD_NtPDuU:258:Particular solutions, f\u2033 part (starts at 4:18)','help']]},
+  {key:'w2', t:'Writing Integrals as Limits of Riemann Sums (match A\u2013J with 1\u201310)', d:'For each integral, find \u0394x = (b\u2212a)/n and c\u2096 = a + \u0394x\u00b7k, plug c\u2096 into f, and expand. Then match it to the limit with the same pieces.',
+   links:[['Worksheet','https://drive.google.com/file/d/1FRnsHvUhYV3z0YYsucTcca1GPr__P3cR/view','primary'],['Stuck? integral \u2192 limit','yt:eidemLqiPyQ:0:Rewriting a definite integral as a limit (Khan, 6 min)','help'],['Stuck? limit \u2192 integral','yt:Himr2l8Rd18:0:Rewriting a limit as a definite integral (Khan, 7 min)','help']]},
+  {key:'w3', t:'Textbook 4.2 #29, 33', d:'Left and right endpoints: find two approximations of the area. Odd answers are in the book.',
+   links:[['Stuck?','yt:YTKQswb60Pw:0:Riemann sums: left and right endpoints (Organic Chemistry Tutor)','help']]},
+  {key:'w4', t:'Textbook 4.2 #35', d:'Upper and lower sums read off a graph, using rectangles of width 1.',
+   links:[['Stuck?','yt:YjEi0sKTyg8:0:Upper and lower sums (Hutchmath, 3 min)','help']]},
+  {key:'w5', t:'Textbook 4.2 #37, 39', d:'Upper and lower sums with a given number of subintervals. #39 (y = 1/x) is decreasing, so the upper sum uses LEFT endpoints.',
+   links:[['Stuck?','yt:YjEi0sKTyg8:0:Upper and lower sums (Hutchmath, 3 min)','help']]},
+  {key:'w6', t:'Textbook 4.2 #43', d:'Upper and lower sums in terms of n for f(x) = 5x\u00b2 on [0, 1]. You need the \u03a3i and \u03a3i\u00b2 formulas. Same steps as Rubio\'s Notes 4.2 p.3.',
+   links:[['Stuck?','yt:ctEpKZyxqFU:0:Area using the limit definition and summation formulas (Organic Chemistry Tutor, 13 min)','help']]},
+  {key:'w7', t:'Textbook 4.2 #48\u201350 (only set up)', d:'Write the limit: lim (n\u2192\u221e) \u03a3 f(a + i\u0394x)\u00b7\u0394x. You don\'t have to evaluate it.',
+   links:[['Stuck?','yt:eidemLqiPyQ:0:Rewriting a definite integral as a limit (Khan, 6 min)','help']]},
+  {key:'w8', t:'Textbook 4.2 #72', d:'Concept question: 12 subintervals on [1, 4], so \u0394x = 1/4. Think about left vs right endpoints on an increasing function.',
+   links:[['Stuck?','yt:ER5eoDkjsrc:0:Over- and under-estimation (Khan, 4 min)','help']]},
+];
+
+const STORE = 'calc-ch4-41-42-plan-v1';
+let state = {};
+try { state = JSON.parse(localStorage.getItem(STORE) || '{}'); } catch (e) { state = {}; }
+function save(){ try { localStorage.setItem(STORE, JSON.stringify(state)); } catch (e) {} updateProgress(); }
+
+function esc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+
+function videoCard(v, n){
+  const key = 'v_' + v.id;
+  const card = document.createElement('div');
+  card.className = 'card' + (state[key] ? ' done' : '');
+  card.innerHTML =
+    '<div class="vid" tabindex="0" role="button" aria-label="Play ' + esc(v.title) + '">' +
+      '<img loading="lazy" alt="" src="https://i.ytimg.com/vi/' + v.id + '/hqdefault.jpg">' +
+      '<div class="play"><span></span></div><div class="num">' + n + '</div><div class="len">' + v.len + '</div>' +
+    '</div>' +
+    '<div class="cbody">' +
+      '<div class="ctitle">' + esc(v.title) + '</div>' +
+      '<div class="small" style="color:var(--muted)">' + esc(v.ch) + ' &middot; <span class="tag">' + esc(v.notes) + '</span></div>' +
+      '<div class="cwhy">' + esc(v.why) + '</div>' +
+      '<div class="crow">' +
+        '<label class="chk"><input type="checkbox"' + (state[key] ? ' checked' : '') + '> Watched</label>' +
+        '<a class="small" target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=' + v.id + '">Open on YouTube</a>' +
+      '</div>' +
+    '</div>';
+  const vid = card.querySelector('.vid');
+  const play = () => { vid.innerHTML = '<iframe src="https://www.youtube.com/embed/' + v.id + '?autoplay=1&rel=0" title="' + esc(v.title) + '" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe>'; vid.style.cursor = 'default'; };
+  vid.addEventListener('click', play, {once:true});
+  vid.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); play(); } }, {once:true});
+  const cb = card.querySelector('input');
+  cb.addEventListener('change', () => { state[key] = cb.checked; card.classList.toggle('done', cb.checked); save(); });
+  return card;
+}
+
+function taskRow(t){
+  const row = document.createElement('div');
+  row.className = 'task' + (state[t.key] ? ' done' : '');
+  const links = t.links.map(([label, href, kind]) => {
+    if (href.startsWith('yt:')) {
+      const [, id, start, ...title] = href.split(':');
+      return '<button class="btn help" data-yt="' + id + '" data-start="' + start + '" data-title="' + esc(title.join(':')) + '">' + esc(label) + '</button>';
+    }
+    return '<a class="btn' + (kind ? ' ' + kind : '') + '" target="_blank" rel="noopener" href="' + href + '">' + esc(label) + '</a>';
+  }).join('');
+  row.innerHTML = '<input type="checkbox" aria-label="Done: ' + esc(t.t) + '"' + (state[t.key] ? ' checked' : '') + '>' +
+    '<div><div class="t">' + esc(t.t) + (t.opt ? '<span class="opt">optional</span>' : '') + '</div>' +
+    '<div class="d">' + esc(t.d) + '</div><div class="links">' + links + '</div></div>';
+  const cb = row.querySelector('input');
+  cb.addEventListener('change', () => { state[t.key] = cb.checked; row.classList.toggle('done', cb.checked); save(); });
+  row.querySelectorAll('[data-yt]').forEach(b => b.addEventListener('click', () => openModal(b.dataset.yt, +b.dataset.start, b.dataset.title)));
+  return row;
+}
+
+const modal = document.getElementById('modal');
+function openModal(id, start, title){
+  document.getElementById('mtitle').textContent = title;
+  document.getElementById('mvid').innerHTML = '<iframe src="https://www.youtube.com/embed/' + id + '?autoplay=1&rel=0' + (start ? '&start=' + start : '') + '" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe>';
+  modal.classList.add('open');
+}
+function closeModal(){ modal.classList.remove('open'); document.getElementById('mvid').innerHTML = ''; }
+document.getElementById('mclose').addEventListener('click', closeModal);
+modal.addEventListener('click', e => { if (e.target === modal) closeModal(); });
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+VIDEOS_41.forEach((v, i) => document.getElementById('v41').appendChild(videoCard(v, i + 1)));
+VIDEOS_42.forEach((v, i) => document.getElementById('v42').appendChild(videoCard(v, VIDEOS_41.length + i + 1)));
+PRACTICE_41.forEach(t => document.getElementById('p41').appendChild(taskRow(t)));
+WORK_42.forEach(t => document.getElementById('w42').appendChild(taskRow(t)));
+
+function allKeys(){
+  return [...VIDEOS_41, ...VIDEOS_42].map(v => 'v_' + v.id)
+    .concat(PRACTICE_41.filter(t => !t.opt).map(t => t.key))
+    .concat(WORK_42.map(t => t.key));
+}
+function updateProgress(){
+  const keys = allKeys(); const done = keys.filter(k => state[k]).length;
+  document.getElementById('bar').style.width = (100 * done / keys.length) + '%';
+  document.getElementById('progtext').textContent = done + ' of ' + keys.length + ' done' + (done === keys.length ? '. All finished!' : '');
+}
+updateProgress();
+
+document.getElementById('reset').addEventListener('click', () => {
+  if (!confirm('Clear all checkmarks?')) return;
+  state = {}; save(); location.reload();
+});
+
+// Countdown to Mon Nov 9 2026, 11:59 PM Pacific (= Nov 10 07:59 UTC)
+const DUE = Date.UTC(2026, 10, 10, 7, 59, 0);
+function tick(){
+  const ms = DUE - Date.now(); const el = document.getElementById('countdown');
+  if (ms <= 0) { el.textContent = '(past due)'; return; }
+  const h = Math.floor(ms / 3.6e6), m = Math.floor(ms % 3.6e6 / 6e4);
+  el.textContent = '(' + (h >= 24 ? Math.floor(h / 24) + 'd ' + (h % 24) + 'h' : h + 'h ' + m + 'm') + ' left)';
+}
+tick(); setInterval(tick, 30000);
+
+document.addEventListener('DOMContentLoaded', () => {
+  if (window.renderMathInElement) renderMathInElement(document.body, {delimiters:[{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}], throwOnError:false});
+});
+window.addEventListener('load', () => {
+  if (window.renderMathInElement && !document.querySelector('.katex')) renderMathInElement(document.body, {delimiters:[{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}], throwOnError:false});
+});
+</script>
+</body>
+</html>
